@@ -1,4 +1,4 @@
-(ns six-numbers-solver.ui
+(ns six-numbers-solver.cli
   (:gen-class))
 (require 'six-numbers-solver.calc)
 
@@ -17,7 +17,7 @@
       (recur (ask-for-input "Enter the goal number: ") [])
       (let [next-entry
             (ask-for-input
-             "Enter a number in the collection, or press enter to end entry: ")]
+             "Enter a number in the collection, or leave blank to leave entry mode: ")]
         (if (not (= "" next-entry))
           (recur goal (cons (read-string next-entry) collection))
           [(read-string goal) collection])))))
