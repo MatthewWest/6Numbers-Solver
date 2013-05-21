@@ -14,7 +14,7 @@
   (loop [goal nil
          collection []]
     (if (nil? goal)
-      (recur (ask-for-input "Enter the goal number: ") [])
+      (recur (ask-for-input "Enter the target number: ") [])
       (let [next-entry
             (ask-for-input
              "Enter a number in the collection, or leave blank to leave entry mode: ")]
@@ -29,7 +29,7 @@
          collection]
         (get-all-inputs)]
     (println
-     (str "Goal: " goal "\nNumbers to use: " collection))
+     (str "Target: " goal "\nNumbers to use: " collection))
     (println "Solving...")
     (println (six-numbers-solver.calc/solve goal collection)))
   (if (= \n
@@ -37,4 +37,3 @@
           (ask-for-input "Solve another problem? (y/n) ")))
     nil
     (recur)))
-
