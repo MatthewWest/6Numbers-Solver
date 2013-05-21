@@ -126,10 +126,3 @@
 (deftest solve-6
   (testing "Solve finds a solution from a list and a goal"
     (is (not (nil? (solve 830 [75 3 10 2 8 7]))))))
-
-
-
-
-
-
-
