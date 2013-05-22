@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
     <title>6Numbers-solver by MatthewWest</title>
   </head>
 
@@ -31,39 +31,53 @@
         <hr>
 
         <section id="main_content">
-          <h1>6Numbers Solver</h1>
+          <h1 id="numberssolver">6Numbers Solver</h1>
 
-<p>This small command-line application solves problems of the form seen in the iOS game 6Numbers. The problem consists of a goal number and a collection of other numbers (6Numbers uses 6 numbers, hence its name). The goal is to add, subtract, multiply, and divide the “other numbers” in any order until you reach the goal number, using all or a subset of them.</p>
+          <p>This small command-line application solves problems of the form seen in the iOS game 6Numbers. The problem consists of a goal number and a collection of other numbers (6Numbers uses 6 numbers, hence its name). The goal is to add, subtract, multiply, and divide the “other numbers” in any order until you reach the goal number, using all or a subset of them.</p>
 
-<h2>Installation</h2>
+          <h2 id="installation">Installation</h2>
 
-<p>If you have Java, there is no need to install anything. Just download and unzip the ZIP archive. Or even better, fork the repository and improve it!</p>
+          <p>If you have Java, there is no need to install anything. Just download and unzip the ZIP archive. Or even better, fork the repository and improve it!</p>
 
-<h2>Usage</h2>
+          <h2 id="usage">Usage</h2>
 
-<p>If you have Clojure and Leiningen installed and want to run the project from source, navigate to the unzipped 6Numbers-Solver folder in the command line and enter 
-<code>lein run</code>.</p>
+          <p>There are two primary ways you can use this program: as a Java command-line tool, or as a JavaScript webpage.</p>
 
-<p>If you’d rather not install Clojure to run the project, navigate to the 6Numbers-Solver/target folder, then run:</p>
+          <h3 id="commandline">Command Line</h3>
 
-<pre><code>$ java -jar six-numbers-solver-0.1.0-standalone.jar
+          <p>For the command-line tool, if you have Clojure and Leiningen installed and want to run the project from source, navigate to the unzipped 6Numbers-Solver folder in the command line and enter
+            <code>lein run</code>.</p>
+
+          <p>If you’d rather not install Clojure, navigate to the 6Numbers-Solver/target folder, then run:</p>
+
+          <pre><code>$ java -jar six-numbers-solver-0.1.0-standalone.jar
 </code></pre>
 
-<p>Then follow the prompts to enter the goal number and collection of numbers. The program will solve them (#FIXME: not always in the most efficient way), and print its solution, then ask if you want to solve another problem.</p>
+          <p>For either command line method, just follow the prompts to enter the goal number and collection of numbers. The program will solve them (though not always in the most efficient way due to its design), and print its solution, then ask if you want to solve another problem.</p>
 
-<h2>Options</h2>
+          <h3 id="webpage">Webpage</h3>
 
-<p>No options yet... some may be coming in the future.</p>
+          <p>To use the webpage, just navigate to the <code>6Numbers-Solver/resources/public/</code> folder and open the file entitled <code>solver.html</code>. That’s it! Just enter your numbers into the web form and press <strong>Solve</strong>. Be sure to have JavaScript enabled, or the webpage won’t do anything.</p>
 
-<h3>Bugs</h3>
+          <h2 id="options">Options</h2>
 
-<p>No known bugs strictly speaking, just lacks of features.</p>
+          <p>There is only one option, script mode, and it is only usable in the Command line mode.</p>
 
-<h2>License</h2>
+          <h3 id="usage">Usage</h3>
 
-<p>Copyright © 2013 Matthew A. West</p>
+          <p>To use script mode, run the program as before (<code>java -jar six-numbers-solver-0.1.0-standalone.jar</code>), but append <code>-c [target [numbers to use]]</code> on the end. This will return a string containing the solution for use in other programs, with newlines escaped by <code>\n</code> .</p>
 
-<p>Distributed under the Eclipse Public License, the same as Clojure.</p>
+          <p>The eventual hope is to make this mode the backend for a system-native 6numbers clone.</p>
+
+          <h3 id="bugs">Bugs</h3>
+
+          <p>No known bugs strictly speaking, just lacks of features.</p>
+
+          <h2 id="license">License</h2>
+
+          <p>Copyright © 2013 Matthew A. West</p>
+
+          <p>Distributed under the Eclipse Public License, the same as Clojure.</p>
         </section>
 
         <footer>
@@ -71,7 +85,7 @@
           This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
         </footer>
 
-        
+
       </div>
     </div>
   </body>
