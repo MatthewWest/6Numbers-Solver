@@ -9,12 +9,14 @@
   
   :test-paths ["test/clj"]
   
-  :dependencies [[org.clojure/clojure "1.5.1"]]
+  :dependencies [[org.clojure/clojure "1.5.1"]
+                 [hiccups "0.2.0"]
+                 [domina "1.0.2-SNAPSHOT"]]
   :main six-numbers-solver.core
   ; :aot [six-numbers-solver.core
   ;       six-numbers-solver.ui
   ;       six-numbers-solver.calc]
-;;  :plugins [[leincljsbuild "0.3.0"]]
+  :plugins [[lein-cljsbuild "0.3.0"]]
 
   :cljsbuild {:crossovers [six-numbers-solver.calc]
               :builds

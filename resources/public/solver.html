@@ -12,40 +12,63 @@
     <!-- login.html -->
     <form method="post" id="numberEntry" novalidate>
       <fieldset>
-        <legend>Numbers</legend>
+        <legend>6Numbers Problem</legend>
 
         <div>
           <label for="target">Target Number</label>
-          <input type="target" name="target" id="target" required>
+          <input type="text" name="target" id="target"
+            value="1"
+            min="1" required>
         </div>
 
         <div>
-          <label for="number1">First Number</label>
-          <input type="number1" name="number1" id="number1" required>
+          <label for="num1">First Number</label>
+          <input type="text"
+            name="num1"
+            id="num1"
+            value="1"
+            min="1" required>
         </div>
 
         <div>
-          <label for="number2">Second Number</label>
-          <input type="number2" name="number2" id="number2">
+          <label for="num2">Second Number</label>
+          <input type="text"
+            name="num2"
+            id="num2"
+            value="1"
+            min="1"
+            required>
         </div>
 
         <div>
-          <label for="number3">Third Number</label>
-          <input type="number3" name="number3" id="number3">
+          <label for="num3">Third Number</label>
+          <input type="text" name="num3" id="num3"
+            value="1"
+            min="1"
+            required>
         </div>
 
         <div>
-          <label for="number4">Fourth Number</label>
-          <input type="number4" name="number4" id="number4">
+          <label for="num4">Fourth Number</label>
+          <input type="text" name="num4" id="num4"
+            value="1"
+            min="1"
+            required>
         </div>
 
         <div>
-          <label for="number5">Fifth Number</label>
-          <input type="number5" name="number5" id="number5">
+          <label for="num5">Fifth Number</label>
+          <input type="text" name="num5" id="num5"
+            value="1"
+            min="1"
+            required>
         </div>
         <div>
-          <label for="number6">Sixth Number</label>
-          <input type="number6" name="number6" id="number6">
+          <label for="num6">Sixth Number</label>
+          <input type="text" name="num6" id="num6"
+            value="1"
+            min="1"
+            required>
         </div>
 
         <div>
@@ -55,7 +78,7 @@
 
       </fieldset>
     </form>
-    <script src="js/solver.js"></script>
+    <script src="js/solver_dbg.js"></script>
     <script>six_numbers_solver.web.init();</script>
   </body>
 </html>
