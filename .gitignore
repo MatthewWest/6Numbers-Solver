@@ -10,3 +10,7 @@ pom.xml.asc
 .lein-failures
 .lein-plugins
 .lein-repl-history
+
+src/.DS_Store
+
+src/clj/six_numbers_solver/.DS_Store
