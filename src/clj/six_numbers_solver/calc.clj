@@ -1,5 +1,4 @@
-(ns six-numbers-solver.calc
-  (:gen-class))
+(ns six-numbers-solver.calc)
 
 
 (defn is-valid? [goal
