@@ -154,7 +154,7 @@
 (defn solve-n-deep [goal
                     collection
                     n]
-
+  "Return a string containing a solution n or less levels deep with new lines escaped by \n if found, else return nil"
 
   ;; First test if the solution is found at depth 1
   (if-let [one-deep-attempt
@@ -186,17 +186,19 @@
           (if-let [sub-solution (find-operation-solution goal collection n add-to-each " - ")]
             sub-solution
             (if-let [div-solution (find-operation-solution goal collection n multiply-by-each " ÷ ")]
-                div-solution
-                nil)))))))
+              div-solution
+              nil)))))))
 
 
-(defn solve-one-deep [goal
-                      collection]
+(defn solve-one-deep
+  "Deprecated. Wraps solve-n-deep not to break tests."
+  [goal collection]
   (solve-n-deep goal collection 1))
 
 
 (defn solve [goal
              collection]
+  "Return a solution if there is one."
   (solve-n-deep goal
                 collection
                 (- (count collection) 1)))
