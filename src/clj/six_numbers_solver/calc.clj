@@ -131,6 +131,25 @@
         (nth operated-on i)
         (remove-index i original-coll)]))))
 
+(declare solve-n-deep)
+
+(defn find-operation-solution
+  "Return a string for a solution to reach goal using operate-on-each, or nil"
+  [goal
+   collection
+   n
+   operate-on-each
+   operator-symbol]
+  (some ;; Return for all the forwards multiplication (division back from the goal) options
+   ;; A function which tries to solve n-1 levels deep for the second (num) of its argument
+   #(if-let [trial (solve-n-deep (second %)
+                                 (nth % 2)
+                                 (- n 1))]
+      (str trial "\n" (first %))
+      nil)
+   ;; Returns a list of the form ["formula to get from newgoal to goal" newgoal [collection left]]
+   (list-for-recursion goal collection operate-on-each operator-symbol)))
+
 
 (defn solve-n-deep [goal
                     collection
@@ -138,72 +157,37 @@
 
 
   ;; First test if the solution is found at depth 1
-  (let [one-deep-attempt (if (in-list? goal collection) ;; Code for a one-deep search
-                           (str goal " = " goal)
-                           (let [mul-solution (solved-by? divide-by-each goal collection)
-                                 sub-solution (solved-by? add-to-each goal collection)
-                                 div-solution (solved-by? multiply-by-each goal collection)
-                                 add-solution (solved-by? subtract-by-each goal collection)]
-                             (cond
-                              mul-solution
-                              (str (first mul-solution) " * " (second mul-solution) " = " goal)
-                              sub-solution
-                              (str (first sub-solution) " - " (second sub-solution) " = " goal)
-                              div-solution
-                              (str (first div-solution) " / " (second div-solution) " = " goal)
-                              add-solution
-                              (str (first add-solution) " + " (second add-solution) " = " goal)
-                              :else
-                              nil)))]
-
-
-    (if (= 1 n) ;; If we're only asked for a one-deep solution...
-      one-deep-attempt ;; Return the results of a one-deep search
-      (if one-deep-attempt ;; If we're asked for greater than a one-deep search, first test if the solution is one-deep
-        one-deep-attempt ;; If we find a solution, return it
-        (let [divide-solutions (some ;; Return for all the forwards multiplication (division back from the goal) options
-                                ;; A function which tries to solve n-1 levels deep for the second (num) of its argument
-                                #(let [trial (solve-n-deep (second %)
-                                                           (nth % 2)
-                                                           (- n 1))]
-                                   (if trial
-                                     (str trial "\n" (first %))
-                                     nil))
-                                ;; Returns a list of the form ["formula to get from newgoal to goal" newgoal [collection left]]
-                                (list-for-recursion goal collection divide-by-each " * "))]
-          (if divide-solutions
-            divide-solutions
-            (let [add-solutions (some
-                                 #(let [trial (solve-n-deep (second %)
-                                                            (nth % 2)
-                                                            (- n 1))]
-                                    (if trial
-                                      (str trial "\n" (first %))
-                                      nil))
-                                 (list-for-recursion goal collection add-to-each " - "))]
-              (if add-solutions
-                add-solutions
-                (let [multiply-solutions (some
-                                          #(let [trial (solve-n-deep (second %)
-                                                                     (nth % 2)
-                                                                     (- n 1))]
-                                             (if trial
-                                               (str trial "\n" (first %))
-                                               nil))
-                                          (list-for-recursion goal collection multiply-by-each " / "))]
-                  (if multiply-solutions
-                    multiply-solutions
-                    (let [subtract-solutions (some
-                                              #(let [trial (solve-n-deep (second %)
-                                                                         (nth % 2)
-                                                                         (- n 1))]
-                                                 (if trial
-                                                   (str trial "\n" (first %))
-                                                   nil))
-                                              (list-for-recursion goal collection subtract-by-each " + "))]
-                      (if subtract-solutions
-                        subtract-solutions
-                        nil))))))))))))
+  (if-let [one-deep-attempt
+           (if (in-list? goal collection) ;; If the goal is in the collection,
+             (str goal " = " goal) ;; Return "Goal = Goal"
+             (let [add-solution (solved-by? subtract-by-each goal collection)
+                   mul-solution (solved-by? divide-by-each goal collection)
+                   sub-solution (solved-by? add-to-each goal collection)
+                   div-solution (solved-by? multiply-by-each goal collection)]
+               (cond
+                add-solution
+                (str (first add-solution) " + " (second add-solution) " = " goal)
+                mul-solution
+                (str (first mul-solution) " * " (second mul-solution) " = " goal)
+                sub-solution
+                (str (first sub-solution) " - " (second sub-solution) " = " goal)
+                div-solution
+                (str (first div-solution) " ÷ " (second div-solution) " = " goal)
+                :else
+                nil)))]
+    one-deep-attempt ;; Return a solution if it's found
+    (if (= n 1) ;; If not, check if we're only asked for one-deep
+      nil ;; If so, return nil
+      ;; The *-by-each methods refer to working backwards from the goal, so the symbol has to be the opposite
+      (if-let [add-solution (find-operation-solution goal collection n subtract-by-each " + ")]
+        add-solution
+        (if-let [mul-solution (find-operation-solution goal collection n divide-by-each " * ")]
+          mul-solution
+          (if-let [sub-solution (find-operation-solution goal collection n add-to-each " - ")]
+            sub-solution
+            (if-let [div-solution (find-operation-solution goal collection n multiply-by-each " ÷ ")]
+                div-solution
+                nil)))))))
 
 
 (defn solve-one-deep [goal
