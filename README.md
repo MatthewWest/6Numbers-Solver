@@ -18,7 +18,7 @@ If you’d rather not install Clojure, navigate to the 6Numbers-Solver/target fo
 For either command line method, just follow the prompts to enter the goal number and collection of numbers. The program will solve them (though not always in the most efficient way due to its design), and print its solution, then ask if you want to solve another problem.
 
 ### Webpage
-To use the webpage, just navigate to the `6Numbers-Solver/resources/public/` folder and open the file entitled `solver.html`. That’s it! Just enter your numbers into the web form and press **Solve**. Be sure to have JavaScript enabled, or the webpage won’t do anything.
+You can try the webpage [here](http://matthewwest.github.io/6Numbers-Solver/resources/public/solver.html), then when you want to use the page on your own computer, just navigate to the `6Numbers-Solver/resources/public/` folder and open the file entitled `solver.html`. That’s it! Just enter your numbers into the web form and press **Solve**. Be sure to have JavaScript enabled, or the webpage won’t do anything.
 
 ## Options
 There is only one option, script mode, and it is only usable in the Command line mode.
