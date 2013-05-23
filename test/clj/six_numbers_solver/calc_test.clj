@@ -57,7 +57,7 @@
 
 (deftest solve-one-deep-division
   (testing "Division works successfully"
-    (is (= "18 / 9 = 2" (solve-one-deep 2 [9 18])))))
+    (is (= "18 ÷ 9 = 2" (solve-one-deep 2 [9 18])))))
 
 (deftest solved-by?-addition
   (testing "Addition uses each number only once, not adding a number to itself"
