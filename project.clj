@@ -4,22 +4,24 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :min-lein-version "2.0.0"
-  
+
   :source-paths ["src/clj"]
-  
+
   :test-paths ["test/clj"]
-  
+
   :dependencies [[org.clojure/clojure "1.5.1"]
+                 [org.clojure/clojurescript "0.0-2371"]
                  [hiccups "0.2.0"]
-                 [domina "1.0.2-SNAPSHOT"]]
+                 [domina "1.0.2-SNAPSHOT"]
+                 [org.clojure/clojure "1.6.0"]
+                 [org.clojure/math.combinatorics "0.0.8"]
+                 [org.clojure/math.numeric-tower "0.0.4"]]
   :main six-numbers-solver.core
   ; :aot [six-numbers-solver.core
   ;       six-numbers-solver.ui
   ;       six-numbers-solver.calc]
   :plugins [[lein-cljsbuild "0.3.0"]]
-
-  :cljsbuild {:crossovers [six-numbers-solver.calc]
-              :builds
+  :cljsbuild {:builds
               {:dev
                {;; clojurescript source code path
                 :source-paths ["src/cljs"]
