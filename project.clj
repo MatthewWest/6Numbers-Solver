@@ -34,15 +34,6 @@
                            :optimizations :whitespace
                            ;; prettyfying emitted JS
                            :pretty-print true}}
-               :pre-prod
-               {;; same path as above
-                :source-paths ["src/cljs"]
-
-                :compiler {;; different JS output name
-                           :output-to "resources/public/js/solver_pre.js"
-
-                           ;; simple optimization
-                           :optimizations :simple}}
                :prod
                {;; same path as above
                 :source-paths ["src/cljs"]
